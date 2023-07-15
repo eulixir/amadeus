@@ -1,21 +1,22 @@
+import { getCurrentDate } from '../helpers/getCurrentDate'
+import { getCurrentTime } from '../helpers/getCurrentTime'
 import { playAudio } from './playAudio'
 import { translateText } from './translateText'
 
 const API_KEY = process.env.API_KEY
 
-export async function processMessageToChatGPT(chatMessages, username) {
-  const currentDate = new Date().toLocaleString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  })
+interface MessageProps {
+  message: string
+  sender: string
+}
 
-  const currentTime = new Date().toLocaleString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  })
+export async function processMessageToChatGPT(
+  chatMessages: Array<MessageProps>,
+  username: String
+) {
+  const currentDate = getCurrentDate()
+
+  const currentTime = getCurrentTime()
 
   const systemMessage = {
     role: 'system',
@@ -33,7 +34,7 @@ export async function processMessageToChatGPT(chatMessages, username) {
     `,
   }
 
-  let apiMessages = chatMessages.map((messageObject) => {
+  let apiMessages = chatMessages.map((messageObject: MessageProps) => {
     let role = ''
     if (messageObject.sender === 'Amadeus') {
       role = 'assistant'

@@ -11,32 +11,27 @@ import {
 } from 'react-icons/io'
 
 import { AiFillApple } from 'react-icons/ai'
+import { getCurrentDate } from '../../helpers/getCurrentDate'
+import { getCurrentTime } from '../../helpers/getCurrentTime'
 
 export const MacOsTopBar = () => {
-  const [date, setDate] = useState(new Date())
+  const currentDate = getCurrentDate()
+  const currentTime = getCurrentTime()
 
-  const [dateString, setDateString] = useState(date.toDateString())
-  const [day, setDay] = useState(date.getDate())
+  const [date, setDate] = useState(currentDate)
+  const [time, setTime] = useState(currentTime)
 
-  const [month, setMonth] = useState(dateString.split(' ')[1])
-  const [weekDay, setWeekDay] = useState(dateString.split(' ')[0])
+  function setTimestamps() {
+    setDate(currentDate)
+    setTime(currentTime)
 
-  const [hours, setHours] = useState(date.getHours())
-  const [minutes, setMinutes] = useState(date.getMinutes())
+    return
+  }
 
   useEffect(() => {
-    const timer = setInterval(() => setDate(new Date()), 1000)
+    const timer = setInterval(() => setTimestamps(), 1000)
     return () => clearInterval(timer)
   }, [])
-
-  useEffect(() => {
-    setDateString(date.toDateString())
-    setDay(date.getDate())
-    setMonth(dateString.split(' ')[1])
-    setWeekDay(dateString.split(' ')[0])
-    setHours(date.getHours())
-    setMinutes(date.getUTCMinutes())
-  }, [date])
 
   return (
     <div className={styles.container}>
@@ -60,13 +55,8 @@ export const MacOsTopBar = () => {
           <IoIosSwitch size={17} />
         </div>
         <div className={styles.dateContainer}>
-          <p>
-            {weekDay} {day} {month}
-          </p>
-          <p>
-            {hours > 9 ? hours : `0${hours}`}:
-            {minutes > 9 ? minutes : `0${minutes}`}
-          </p>
+          <p>{date}</p>
+          <p>{time}</p>
         </div>
       </div>
     </div>

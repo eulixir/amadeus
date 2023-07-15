@@ -12,9 +12,7 @@ import { NavBar } from './components/navbar/NavBar'
 // const username = ' USER '
 
 export const App: FC<{}> = () => {
-  const [currentKirisuMessage, setCurrentKirisuMessage] = useState(
-    'Hello, he probaply went to see.'
-  )
+  const [currentKirisuMessage, setCurrentKirisuMessage] = useState('Hello.')
   //   const [messages, setMessages] = useState([
   //     {
   //       message: 'Hello!',
