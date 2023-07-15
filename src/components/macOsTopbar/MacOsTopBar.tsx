@@ -53,18 +53,19 @@ export const MacOsTopBar = () => {
       </div>
       <div className={styles.appInfoContainer}>
         <div className={styles.optionContainer}>
-          <IoIosMoon size={20} />
-          <IoIosBatteryCharging size={20} />
-          <IoIosWifi size={20} />
-          <IoIosSearch size={20} />
-          <IoIosSwitch size={20} />
+          <IoIosMoon size={19} />
+          <IoIosBatteryCharging size={19} />
+          <IoIosWifi size={19} />
+          <IoIosSearch size={19} />
+          <IoIosSwitch size={17} />
         </div>
         <div className={styles.dateContainer}>
           <p>
             {weekDay} {day} {month}
           </p>
           <p>
-            {hours}:{minutes > 9 ? minutes : `0${minutes}`}
+            {hours > 9 ? hours : `0${hours}`}:
+            {minutes > 9 ? minutes : `0${minutes}`}
           </p>
         </div>
       </div>

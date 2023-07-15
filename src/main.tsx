@@ -5,8 +5,7 @@ import { App } from './App'
 
 const rootElement = document.getElementById('root')!
 
-const root = ReactDOM.createRoot(rootElement)
-root.render(
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>

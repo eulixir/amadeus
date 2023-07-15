@@ -3,9 +3,9 @@ import styles from './styles/App.module.css'
 import kurisu from './assets/bg_character_.png'
 // import { processMessageToChatGPT } from './services/sendMessageToAPI'
 import { TopBar } from './components/topBar/TopBar'
-// import { BsFillSendFill } from 'react-icons/bs'
-// import { AiOutlineClose } from 'react-icons/ai'
+
 import { MacOsTopBar } from './components/macOsTopbar/MacOsTopBar'
+import { NavBar } from './components/navbar/NavBar'
 
 // const API_KEY = "";
 
@@ -22,7 +22,6 @@ export const App: FC<{}> = () => {
   //       sender: 'Amadeus',
   //     },
   //   ])
-  const [typingMessage, setTypingMessage] = useState('')
 
   //   const lastMessageRef = useRef(null)
 
@@ -99,7 +98,7 @@ export const App: FC<{}> = () => {
   //         <div className="messageInputChatting">
   //           <input
   //             type="text"
-  //             placeholder="メッセージを入れて下さい"
+  //             placeholder=""
   //             onKeyDown={(e) => {
   //               if (e.key === 'Enter') {
   //                 handleSend(e.target.value)
@@ -118,6 +117,7 @@ export const App: FC<{}> = () => {
       <MacOsTopBar />
       <div className={styles.appInterfaceContainer}>
         <TopBar />
+        <NavBar />
         <div className={styles.kurisuContainer}>
           <img
             className={styles.kurisu}
