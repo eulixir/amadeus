@@ -1,0 +1,80 @@
+.headerContainer {
+  width: 100%;
+  height: 30px;
+
+  border-radius: 10px 10px 0 0;
+
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headerContainer > div {
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  float: left;
+
+  left: 10px;
+  position: absolute;
+
+  color: var(--white-400);
+}
+
+.headerContainer > div {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  float: left;
+
+  left: 10px;
+  position: absolute;
+
+  font-size: 0.7rem;
+}
+
+.headerContainer > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(255, 0, 0, 0);
+}
+
+.headerContainer > div > div:first-child {
+  background: var(--red-400);
+}
+
+.headerContainer > div > div:nth-child(2) {
+  background: var(--yellow-400);
+}
+
+.headerContainer > div > div:last-child {
+  background: var(--green-400);
+}
+
+.headerContainer > div > div:hover {
+  color: #0c0000;
+
+  cursor: pointer;
+}
+
+.circle {
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+}

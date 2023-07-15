@@ -1,0 +1,79 @@
+.container {
+  background: rgba(37, 37, 37, 0.445);
+
+  backdrop-filter: blur(40px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 1.5rem;
+}
+
+.dateContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  color: var(--gray-light-100);
+  font-size: 0.8rem;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  margin-left: 1.2rem;
+}
+
+.appInfoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dateContainer > p:last-child {
+  margin-left: 0.5rem;
+
+  margin-right: 1.2rem;
+}
+
+.optionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.optionContainer > * {
+  color: var(--gray-light-100);
+  margin-left: 1rem;
+}
+
+.customControlContainer {
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  font-size: 0.8rem;
+}
+/* second element */
+.customControlContainer > *:nth-child(2) {
+  font-weight: 700;
+  margin-right: 0.1rem;
+}
+
+.customControlContainer > * {
+  margin-left: 1rem;
+
+  color: var(--gray-light-100);
+}
+
+.customControlContainer > *:hover {
+  cursor: default;
+}

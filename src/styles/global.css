@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap');
+
+:root {
+  --white: #ffffff;
+
+  --red-400: #f24f55;
+  --red-500: #d23b40;
+
+  --yellow-400: #fbc536;
+  --green-400: #35d943;
+  --green-500: #00875f;
+
+  --gray-light-100: #f2f2f7;
+  --gray-light-200: #e5e5ea;
+  --gray-light-300: #d1d1d6;
+  --gray-light-500: #c7c7cc;
+  --gray-light-700: #aeaeb2;
+  --gray-light-900: #8e8e98;
+
+  --gray-dark-100: #8e8e93;
+  --gray-dark-300: #636366;
+  --gray-dark-400: #48484a;
+  --gray-dark-600: #3a3a3c;
+  --gray-dark-700: #1c1c1e;
+  --gray-dark-800: #202024;
+  --gray-dark-900: rgb(28, 28, 28);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-image: url('../assets/background.jpg');
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}

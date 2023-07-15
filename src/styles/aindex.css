@@ -11,11 +11,9 @@ img {
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
-  user-drag: none;
 }
 
 ::-moz-selection {
-  /* Code for Firefox */
   background-color: #c6a3bb;
   color: #7c5b72;
 }
@@ -39,7 +37,6 @@ img {
   background-color: #eaf0ec;
 }
 
-/* cyrillic-ext */
 @font-face {
   font-family: 'Oswald';
   font-style: normal;
@@ -50,7 +47,7 @@ img {
   unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
     U+FE2E-FE2F;
 }
-/* cyrillic */
+
 @font-face {
   font-family: 'Oswald';
   font-style: normal;
@@ -60,7 +57,7 @@ img {
     format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
-/* vietnamese */
+
 @font-face {
   font-family: 'Oswald';
   font-style: normal;
@@ -100,7 +97,9 @@ body {
   font-family: 'oswald';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(./assets/bg.png);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   background-size: cover;
   height: 100vh;
@@ -160,6 +159,7 @@ code {
 }
 
 .App {
+  background-image: url(../assets/bg.png);
   text-align: center;
   height: 100vh;
   display: flex;
@@ -241,26 +241,19 @@ code {
 }
 
 .messageInputChatting input {
-  background-color: #c6a3bb;
+  background-color: #ffffffd9;
   opacity: 0.9;
-  border: none; /* remove the border */
-  outline: none; /* remove the outline when clicked */
+  border: none;
+  outline: none;
   width: 80%;
   height: 50px;
   border-radius: 10px;
-  padding: 0; /* remove the padding */
-  padding-left: 3px; /* add padding-left */
-  font-family: 'oswald';
-  font-weight: 700;
-  margin: 0 auto; /* center the input horizontally */
-  line-height: 50px; /* vertically center the text inside the input */
+  padding: 1rem 1.2rem;
+  font-family: 'oswald', sans-serif;
+  font-weight: 200;
+  font-size: 1.2em;
+  margin: 0 auto;
 }
-
-/* .messageInputChatting input::placeholder {
-  position: absolute;
-  top: 5px; 
-  left: 3px;
-} */
 
 .Chatting .messageList .assistant {
   opacity: 1;
@@ -269,7 +262,7 @@ code {
 .Chatting .message.assistant {
   align-self: flex-start;
   background-color: transparent;
-  color: #7c5b72;
+  color: #3b393a;
   opacity: 1;
   font-size: larger;
 }
