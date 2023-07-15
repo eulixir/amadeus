@@ -15,15 +15,12 @@ import { getCurrentDate } from '../../helpers/getCurrentDate'
 import { getCurrentTime } from '../../helpers/getCurrentTime'
 
 export const MacOsTopBar = () => {
-  const currentDate = getCurrentDate()
-  const currentTime = getCurrentTime()
-
-  const [date, setDate] = useState(currentDate)
-  const [time, setTime] = useState(currentTime)
+  const [date, setDate] = useState(getCurrentDate())
+  const [time, setTime] = useState(getCurrentTime())
 
   function setTimestamps() {
-    setDate(currentDate)
-    setTime(currentTime)
+    setDate(getCurrentDate())
+    setTime(getCurrentTime())
 
     return
   }

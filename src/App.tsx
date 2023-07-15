@@ -1,6 +1,7 @@
-import { useState, FC } from 'react'
+import { useState, FC, PointerEvent } from 'react'
 import styles from './styles/App.module.css'
 import kurisu from './assets/bg_character_.png'
+import { motion, useDragControls } from 'framer-motion'
 // import { processMessageToChatGPT } from './services/sendMessageToAPI'
 import { TopBar } from './components/topBar/TopBar'
 
@@ -12,6 +13,7 @@ import { NavBar } from './components/navbar/NavBar'
 // const username = ' USER '
 
 export const App: FC<{}> = () => {
+  const dragControls = useDragControls()
   const [currentKirisuMessage, setCurrentKirisuMessage] = useState('Hello.')
   //   const [messages, setMessages] = useState([
   //     {
@@ -110,14 +112,23 @@ export const App: FC<{}> = () => {
   //   )
   // }
 
+  function startDrag(event: PointerEvent<HTMLElement>) {
+    dragControls.start(event, { snapToCursor: true })
+  }
+
   return (
     <div className={styles.appContainer}>
       <MacOsTopBar />
-      <div className={styles.appInterfaceContainer}>
-        <TopBar />
+      <motion.div
+        drag
+        dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
+        className={styles.appInterfaceContainer}
+      >
+        <TopBar startDrag={startDrag} />
         <NavBar />
         <div className={styles.kurisuContainer}>
           <img
+            draggable="false"
             className={styles.kurisu}
             id="kurisu"
             src={kurisu}
@@ -135,7 +146,7 @@ export const App: FC<{}> = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
