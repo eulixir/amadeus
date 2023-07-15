@@ -12,7 +12,7 @@ import {
 
 import { AiFillApple } from 'react-icons/ai'
 
-export function MacOsTopBar() {
+export const MacOsTopBar = () => {
   const [date, setDate] = useState(new Date())
 
   const [dateString, setDateString] = useState(date.toDateString())

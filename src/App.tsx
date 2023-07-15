@@ -1,17 +1,17 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, FC } from 'react'
 import styles from './styles/App.module.css'
 import kurisu from './assets/bg_character_.png'
-import { processMessageToChatGPT } from './services/sendMessageToAPI'
+// import { processMessageToChatGPT } from './services/sendMessageToAPI'
 import { TopBar } from './components/topBar/TopBar'
-import { BsFillSendFill } from 'react-icons/bs'
-import { AiOutlineClose } from 'react-icons/ai'
+// import { BsFillSendFill } from 'react-icons/bs'
+// import { AiOutlineClose } from 'react-icons/ai'
 import { MacOsTopBar } from './components/macOsTopbar/MacOsTopBar'
 
 // const API_KEY = "";
 
 // const username = ' USER '
 
-function App() {
+export const App: FC<{}> = () => {
   const [currentKirisuMessage, setCurrentKirisuMessage] = useState(
     'Hello, he probaply went to see.'
   )
@@ -141,4 +141,3 @@ function App() {
     </div>
   )
 }
-export default App
