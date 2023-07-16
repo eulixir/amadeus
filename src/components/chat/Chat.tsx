@@ -1,45 +1,14 @@
 import styles from './Chat.module.css'
 import { AiOutlineUser } from 'react-icons/ai'
 
-export const Chat = () => {
-  const chatHistory = [
-    {
-      sender: 'Amadeus',
-      message: 'Hello, I am Amadeus. How can I help you?',
-    },
-    {
-      sender: 'User',
-      message: 'I want to book a flight',
-    },
-    {
-      sender: 'Amadeus',
-      message: 'Sure, where do you want to go?',
-    },
-    {
-      sender: 'User',
-      message: 'I want to go to London',
-    },
-    {
-      sender: 'Amadeus',
-      message: 'When do you want to go?',
-    },
-    {
-      sender: 'User',
-      message: 'I want to go next week',
-    },
-    {
-      sender: 'Amadeus',
-      message: 'Okay, I found a flight for you',
-    },
-    {
-      sender: 'User',
-      message: 'Great, thank you!',
-    },
-  ]
+interface ChatProps {
+  messages: { sender: string; message: string }[]
+}
 
+export const Chat = ({ messages }: ChatProps) => {
   return (
     <div className={styles.messagesContainer}>
-      {chatHistory.map((chat) => {
+      {messages.map((chat) => {
         return (
           <>
             {chat.sender === 'Amadeus' ? (

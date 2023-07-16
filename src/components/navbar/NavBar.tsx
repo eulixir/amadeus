@@ -5,13 +5,30 @@ import { BsFillSendFill } from 'react-icons/bs'
 import { IoIosArrowForward, IoIosChatboxes } from 'react-icons/io'
 
 import { useState } from 'react'
-import { Chat } from '../chats/Chat'
+import { Chat } from '../chat/Chat'
+import { insertMessageToHistory } from '../../services/history/insertNewMessageToHistory'
+import { getChatHistory } from '../../services/history/getChatHistory'
 
 export const NavBar = () => {
   const [typingMessage, setTypingMessage] = useState('')
   const [sideBarOpen, setSideBarOpen] = useState(false)
 
+  const [messages, setMessages] = useState(getChatHistory)
+
   const showSidebar = () => setSideBarOpen(!sideBarOpen)
+
+  function insertMessage() {
+    insertMessageToHistory({
+      sender: 'User',
+      message: typingMessage,
+    })
+
+    setSideBarOpen(false)
+
+    setTypingMessage('')
+
+    setMessages(getChatHistory())
+  }
 
   return (
     <>
@@ -27,7 +44,7 @@ export const NavBar = () => {
             />
           </div>
           <div className={styles.chatHistoryContainer}>
-            <Chat />
+            <Chat messages={messages} />
           </div>
           <label>Message:</label>
           <div className={styles.inputContainer}>
@@ -47,7 +64,10 @@ export const NavBar = () => {
                 <AiOutlineClose className={styles.inactiveEraseButton} />
               )}
             </div>
-            <div className={styles.sendMessageContainer}>
+            <div
+              className={styles.sendMessageContainer}
+              onClick={() => insertMessage()}
+            >
               <BsFillSendFill color="white" />
             </div>
           </div>

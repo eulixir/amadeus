@@ -9,8 +9,6 @@ import { MacOsTopBar } from './components/macOsTopbar/MacOsTopBar'
 import { NavBar } from './components/navbar/NavBar'
 import { useTypingEffect } from './hooks/typingEffect'
 
-// const API_KEY = "";
-
 // const username = ' USER '
 
 export const App: FC<{}> = () => {
