@@ -9,7 +9,6 @@ import { Chat } from '../chats/Chat'
 
 export const NavBar = () => {
   const [typingMessage, setTypingMessage] = useState('')
-
   const [sideBarOpen, setSideBarOpen] = useState(false)
 
   const showSidebar = () => setSideBarOpen(!sideBarOpen)

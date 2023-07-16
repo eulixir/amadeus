@@ -34,7 +34,7 @@
   height: 55rem !important;
   max-height: 80%;
   width: auto;
-  position: fixed;
+  position: absolute;
   margin: 0 auto;
 
   -webkit-user-select: none;
@@ -79,19 +79,29 @@
 
   padding: 10px 10%;
 
+  overflow: hidden;
+
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.chatContainer > div {
+.chatContainer > div:first-child {
   width: 100%;
   height: 80%;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin-bottom: 1rem;
 }
 
-.chatContainer > div > p {
-  height: 100%;
+.chatContainer > div:first-child::-webkit-scrollbar {
+  display: none;
+}
+
+.chatContainer > div:first-child > p {
+  height: 80%;
+
   line-height: 1.5;
   letter-spacing: 0.3rem;
 
@@ -102,34 +112,14 @@
   font-weight: 500;
 }
 
-/* personalize scroll bar */
-.chatContainer::-webkit-scrollbar {
-  width: 1rem;
-  height: 80rem;
-}
-
-.chatContainer::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.chatContainer::-webkit-scrollbar-thumb {
-  background: var(--gray-light-700);
-  border-radius: 14px;
-}
-
-.chatContainer::-webkit-scrollbar-thumb:hover {
-  background: var(--gray-light-500);
-}
-
-.chatContainer::-webkit-scrollbar-thumb:active {
-  background: var(--gray-light-500);
-}
-
 .kurisuNameContainer {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  width: 100%;
+  height: 20%;
 
   display: flex;
   align-items: center;

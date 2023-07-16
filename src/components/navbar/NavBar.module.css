@@ -1,3 +1,12 @@
+.banana {
+  width: 70%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  background: red;
+  z-index: 999;
+}
+
 .navbar {
   right: 2.5rem;
   top: 2.2rem;
