@@ -4,7 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { BsFillSendFill } from 'react-icons/bs'
 import { IoIosArrowForward, IoIosChatboxes } from 'react-icons/io'
 
-import { useState } from 'react'
+import { useState, KeyboardEvent } from 'react'
 import { Chat } from '../chat/Chat'
 import { insertMessageToHistory } from '../../services/history/insertNewMessageToHistory'
 import { getChatHistory } from '../../services/history/getChatHistory'
@@ -30,6 +30,17 @@ export const NavBar = () => {
     setMessages(getChatHistory())
   }
 
+  function applyEffects(e: KeyboardEvent<HTMLInputElement>): void {
+    if (
+      (e.key === 'Enter' && e.metaKey && typingMessage != '') ||
+      (e.key === 'Enter' && e.ctrlKey && typingMessage != '')
+    ) {
+      insertMessage()
+    }
+
+    return
+  }
+
   return (
     <>
       <div className={styles.navbar}>
@@ -53,6 +64,7 @@ export const NavBar = () => {
               placeholder="Send a message to Kurisu..."
               onChange={(e) => setTypingMessage(e.target.value)}
               value={typingMessage}
+              onKeyDown={(e) => applyEffects(e)}
             />
             <div className={styles.erasePhraseContainer}>
               {typingMessage != '' ? (
