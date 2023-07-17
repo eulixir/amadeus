@@ -45,7 +45,6 @@ export async function processMessageToChatGPT() {
     '''normal'''
     In addition to these emotions, as Makise Kurisu, you can also experience various interpersonal feelings, such as forming friendships, developing romantic interests, or harboring negative emotions like hatred towards certain individuals. Remember to always incorporate one of these emotions in your response to set the tone for your character, Makise Kurisu, while also considering your relationships with others.
     You are currently talking with ${username}
-    People you know: Lokman (dev who made the amadeus system you're using.)
     `,
   }
 
@@ -87,8 +86,12 @@ export async function processMessageToChatGPT() {
         playAudio(translation)
         return
       }
+
+      return
     })
     .catch((error) => {
       console.log(error)
     })
+
+  return
 }

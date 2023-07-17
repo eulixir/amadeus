@@ -1,106 +1,56 @@
-import { useState, FC, PointerEvent } from 'react'
+import { useState, FC, KeyboardEvent, useEffect } from 'react'
 import styles from './styles/App.module.css'
 import kurisu from './assets/bg_character_.png'
 import { motion } from 'framer-motion'
-// import { processMessageToChatGPT } from './services/sendMessageToAPI'
+
+import { AiOutlineClose } from 'react-icons/ai'
+import { BsFillSendFill } from 'react-icons/bs'
+
 import { TopBar } from './components/topBar/TopBar'
 
 import { MacOsTopBar } from './components/macOsTopbar/MacOsTopBar'
 import { NavBar } from './components/navbar/NavBar'
 import { useTypingEffect } from './hooks/typingEffect'
 
-import { translateText } from './services/translateText'
+import { getLastKurisuMessage } from './services/history/getLastKurisuMessage'
+import { playAudio } from './services/playAudio'
 
-// const username = ' USER '
+import { insertMessageToHistory } from './services/history/insertNewMessageToHistory'
+import { processMessageToChatGPT } from './services/sendMessageToAPI'
 
 export const App: FC<{}> = () => {
-  const [currentKirisuMessage, setCurrentKirisuMessage] = useState('Hello.')
-  //   const [messages, setMessages] = useState([
-  //     {
-  //       message: 'Hello!',
-  //       sentTime: 'just now',
-  //       sender: 'Amadeus',
-  //     },
-  //   ])
+  const [currentKirisuMessage, setCurrentKirisuMessage] = useState('')
+  const [typingMessage, setTypingMessage] = useState('')
 
-  //   const lastMessageRef = useRef(null)
+  useEffect(() => {
+    setCurrentKirisuMessage(getLastKurisuMessage())
+    playAudio(currentKirisuMessage)
+  }, [])
 
-  //   const handleSend = async (message) => {
-  //     console.log('User:', message)
-  //     const sentTime = new Date().toLocaleString()
-  //     const newMessage = {
-  //       message,
-  //       direction: 'outgoing',
-  //       sender: 'user',
-  //       username: username,
-  //       sentTime: sentTime,
-  //     }
-  //     const newMessages = [...messages, newMessage]
-  //     setMessages(newMessages)
-  //     setIsTyping(true)
-  //     await processMessageToChatGPT(newMessages, username)
-  //   }
+  function insertMessage() {
+    insertMessageToHistory({
+      sender: 'User',
+      message: typingMessage,
+    })
 
-  //   useEffect(() => {
-  //     lastMessageRef.current.scrollIntoView({ behavior: 'smooth' })
-  //   }, [messages])
+    setTypingMessage('')
+  }
 
-  //   useEffect(() => {
-  //     if (lastMessageRef.current) {
-  //       lastMessageRef.current.scrollIntoView({ behavior: 'smooth' })
-  //     }
-  //   }, [messages])
+  function applyEffects(e: KeyboardEvent<HTMLInputElement>): void {
+    if (
+      (e.key === 'Enter' && e.metaKey && typingMessage != '') ||
+      (e.key === 'Enter' && e.ctrlKey && typingMessage != '')
+    ) {
+      insertMessage()
 
-  //   return (
-  //     <>
-  //       <div className="App">
-  //         <div className="chat">
-  //           <div className="messageList" ref={lastMessageRef}>
-  //             {isTyping && (
-  //               <div className="typingIndicator">Amadeus is typing...</div>
-  //             )}
-  //             {messages.map((message, i) => (
-  //               <div
-  //                 key={i}
-  //                 className={`message ${
-  //                   message.sender === 'Amadeus' ? 'assistant' : 'user'
-  //                 }`}
-  //               >
-  //                 {message.message}
-  //               </div>
-  //             ))}
-  //           </div>
-  //           <div className="messageInput">
-  //             <input
-  //               type="text"
-  //               placeholder="Type message here"
-  //               onKeyDown={(e) => {
-  //                 if (e.key === 'Enter') {
-  //                   handleSend(e.target.value)
-  //                   e.target.value = ''
-  //                 }
-  //               }}
-  //             />
-  //           </div>
-  //         </div>
-  //         <img className="kurisu" id="kurisu" src={kurisu} alt="Kurisu"></img>
-  //       </div>
-  //       <div className="Chatting">
-  //         <div className="messageList" ref={lastMessageRef}>
-  //           <div className={`message assistant`}>
-  //             {
-  //               messages
-  //                 .filter((message) => message.sender === 'Amadeus')
-  //                 .slice(-1)[0]?.message
-  //             }
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </>
-  //   )
-  // }
+      processMessageToChatGPT()
 
-  translateText('Hello, how are you?')
+      setCurrentKirisuMessage(getLastKurisuMessage())
+      return
+    }
+
+    return
+  }
 
   return (
     <div className={styles.appContainer}>
@@ -128,6 +78,32 @@ export const App: FC<{}> = () => {
               <div className={styles.nameLine} />
               Makise Kurisu
               <div className={styles.nameLine} />
+            </div>
+            <label>Message:</label>
+            <div className={styles.inputContainer}>
+              <input
+                type="text"
+                placeholder="Send a message to Kurisu..."
+                onChange={(e) => setTypingMessage(e.target.value)}
+                value={typingMessage}
+                onKeyDown={(e) => applyEffects(e)}
+              />
+              <div className={styles.erasePhraseContainer}>
+                {typingMessage != '' ? (
+                  <AiOutlineClose
+                    className={styles.activeEraseButton}
+                    onClick={() => setTypingMessage('')}
+                  />
+                ) : (
+                  <AiOutlineClose className={styles.inactiveEraseButton} />
+                )}
+              </div>
+              <div
+                className={styles.sendMessageContainer}
+                onClick={() => insertMessage()}
+              >
+                <BsFillSendFill color="white" />
+              </div>
             </div>
           </div>
         </div>

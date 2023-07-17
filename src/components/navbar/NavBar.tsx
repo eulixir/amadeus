@@ -1,49 +1,22 @@
 import styles from './NavBar.module.css'
 
-import { AiOutlineClose } from 'react-icons/ai'
-import { BsFillSendFill } from 'react-icons/bs'
 import { IoIosArrowForward, IoIosChatboxes } from 'react-icons/io'
 
-import { useState, KeyboardEvent } from 'react'
+import { useEffect, useState } from 'react'
 import { Chat } from '../chat/Chat'
-import { insertMessageToHistory } from '../../services/history/insertNewMessageToHistory'
+
 import { getChatHistory } from '../../services/history/getChatHistory'
-import { processMessageToChatGPT } from '../../services/sendMessageToAPI'
 
 export const NavBar = () => {
-  const [typingMessage, setTypingMessage] = useState('')
   const [sideBarOpen, setSideBarOpen] = useState(false)
 
   const [messages, setMessages] = useState(getChatHistory)
 
+  useEffect(() => {
+    setMessages(getChatHistory)
+  }, [])
+
   const showSidebar = () => setSideBarOpen(!sideBarOpen)
-
-  function insertMessage() {
-    insertMessageToHistory({
-      sender: 'User',
-      message: typingMessage,
-    })
-
-    setSideBarOpen(false)
-
-    setTypingMessage('')
-
-    setMessages(getChatHistory())
-  }
-
-  function applyEffects(e: KeyboardEvent<HTMLInputElement>): void {
-    if (
-      (e.key === 'Enter' && e.metaKey && typingMessage != '') ||
-      (e.key === 'Enter' && e.ctrlKey && typingMessage != '')
-    ) {
-      insertMessage()
-
-      processMessageToChatGPT()
-      return
-    }
-
-    return
-  }
 
   return (
     <>
@@ -60,32 +33,6 @@ export const NavBar = () => {
           </div>
           <div className={styles.chatHistoryContainer}>
             <Chat messages={messages} />
-          </div>
-          <label>Message:</label>
-          <div className={styles.inputContainer}>
-            <input
-              type="text"
-              placeholder="Send a message to Kurisu..."
-              onChange={(e) => setTypingMessage(e.target.value)}
-              value={typingMessage}
-              onKeyDown={(e) => applyEffects(e)}
-            />
-            <div className={styles.erasePhraseContainer}>
-              {typingMessage != '' ? (
-                <AiOutlineClose
-                  className={styles.activeEraseButton}
-                  onClick={() => setTypingMessage('')}
-                />
-              ) : (
-                <AiOutlineClose className={styles.inactiveEraseButton} />
-              )}
-            </div>
-            <div
-              className={styles.sendMessageContainer}
-              onClick={() => insertMessage()}
-            >
-              <BsFillSendFill color="white" />
-            </div>
           </div>
         </div>
       </nav>
