@@ -10,7 +10,6 @@ import { TopBar } from './components/topBar/TopBar'
 
 import { MacOsTopBar } from './components/macOsTopbar/MacOsTopBar'
 import { NavBar } from './components/navbar/NavBar'
-import { useTypingEffect } from './hooks/typingEffect'
 
 import { getLastKurisuMessage } from './services/history/getLastKurisuMessage'
 import { playAudio } from './services/playAudio'
@@ -36,14 +35,16 @@ export const App: FC<{}> = () => {
     setTypingMessage('')
   }
 
-  function applyEffects(e: KeyboardEvent<HTMLInputElement>): void {
+  async function applyEffects(
+    e: KeyboardEvent<HTMLInputElement>
+  ): Promise<void> {
     if (
       (e.key === 'Enter' && e.metaKey && typingMessage != '') ||
       (e.key === 'Enter' && e.ctrlKey && typingMessage != '')
     ) {
       insertMessage()
 
-      processMessageToChatGPT()
+      await processMessageToChatGPT()
 
       setCurrentKirisuMessage(getLastKurisuMessage())
       return
@@ -72,7 +73,7 @@ export const App: FC<{}> = () => {
           />
           <div className={styles.chatContainer}>
             <div>
-              <p>"{useTypingEffect(currentKirisuMessage, 100)}"</p>
+              <p>"{currentKirisuMessage}"</p>
             </div>
             <div className={styles.kurisuNameContainer}>
               <div className={styles.nameLine} />

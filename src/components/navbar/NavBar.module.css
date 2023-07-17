@@ -84,8 +84,9 @@
   height: 10%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding-right: 2.6rem;
+  padding-left: 2.6rem;
 
   color: var(--gray-dark-800);
 }
