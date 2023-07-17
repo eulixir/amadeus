@@ -8,8 +8,20 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 
   min-height: 120px;
+}
+
+.amadeusChatContainer > span,
+.userChatContainer > span {
+  position: absolute;
+  right: 20px;
+  top: 0.5rem;
+
+  font-size: 0.8rem;
+
+  color: var(--gray-light-00);
 }
 
 .amadeusChatContainer {

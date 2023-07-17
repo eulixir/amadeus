@@ -3,7 +3,7 @@ import { getChatHistory } from './history/getChatHistory'
 import { playAudio } from './playAudio'
 import { translateText } from './translateText'
 
-const API_KEY = import.meta.env.API_KEY || ''
+const API_KEY = import.meta.env.VITE_API_KEY || ''
 
 interface MessageProps {
   message: string
