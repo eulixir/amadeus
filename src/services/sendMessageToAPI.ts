@@ -1,4 +1,5 @@
 import { getCurrentTime, getCurrentDate } from '../helpers/helper'
+import { getChatHistory } from './history/getChatHistory'
 import { playAudio } from './playAudio'
 import { translateText } from './translateText'
 
@@ -10,10 +11,9 @@ interface MessageProps {
   id?: number
 }
 
-export async function processMessageToChatGPT(
-  chatMessages: Array<MessageProps>,
-  username: String
-) {
+export async function processMessageToChatGPT(username: String) {
+  const chatHistory = getChatHistory()
+
   const currentDate = getCurrentDate()
 
   const currentTime = getCurrentTime()
@@ -34,7 +34,7 @@ export async function processMessageToChatGPT(
     `,
   }
 
-  let apiMessages = chatMessages.map((messageObject: MessageProps) => {
+  let apiMessages = chatHistory.map((messageObject: MessageProps) => {
     let role = ''
     if (messageObject.sender === 'Amadeus') {
       role = 'assistant'
@@ -71,8 +71,12 @@ export async function processMessageToChatGPT(
         sender: 'Amadeus',
       }
       const inputData = { inputs: data.choices[0].message.content }
-      console.log('Amadeus: ' + data.choices[0].message.content)
+
       const translation = await translateText(inputData.inputs)
-      playAudio(translation)
+
+      if (translation) {
+        playAudio(translation)
+        return
+      }
     })
 }
