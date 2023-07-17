@@ -44,9 +44,10 @@ export const App: FC<{}> = () => {
     ) {
       insertMessage()
 
+      setCurrentKirisuMessage(getLastKurisuMessage())
+
       await processMessageToChatGPT()
 
-      setCurrentKirisuMessage(getLastKurisuMessage())
       return
     }
 
@@ -80,7 +81,6 @@ export const App: FC<{}> = () => {
               Makise Kurisu
               <div className={styles.nameLine} />
             </div>
-            <label>Message:</label>
             <div className={styles.inputContainer}>
               <input
                 type="text"

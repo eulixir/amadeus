@@ -1,19 +1,25 @@
 import styles from './Chat.module.css'
 import { AiOutlineUser } from 'react-icons/ai'
+import { getChatHistory } from '../../services/history/getChatHistory'
+import { useEffect, useState } from 'react'
 
 interface ChatProps {
-  messages: {
-    sender: string
-    message: string
-    id: number
-    timestamp: string
-  }[]
+  sender: string
+  message: string
+  id: number
+  timestamp: string
 }
 
-export const Chat = ({ messages }: ChatProps) => {
+export function Chat() {
+  const [messages, setMessages] = useState(getChatHistory)
+
+  useEffect(() => {
+    setMessages(getChatHistory)
+  }, [])
+
   return (
     <div className={styles.messagesContainer}>
-      {messages.map((chat) => {
+      {messages.map((chat: ChatProps) => {
         return (
           <>
             {chat.sender === 'Amadeus' ? (
