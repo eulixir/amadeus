@@ -8,6 +8,7 @@ import { useState, KeyboardEvent } from 'react'
 import { Chat } from '../chat/Chat'
 import { insertMessageToHistory } from '../../services/history/insertNewMessageToHistory'
 import { getChatHistory } from '../../services/history/getChatHistory'
+import { processMessageToChatGPT } from '../../services/sendMessageToAPI'
 
 export const NavBar = () => {
   const [typingMessage, setTypingMessage] = useState('')
@@ -36,6 +37,9 @@ export const NavBar = () => {
       (e.key === 'Enter' && e.ctrlKey && typingMessage != '')
     ) {
       insertMessage()
+
+      processMessageToChatGPT()
+      return
     }
 
     return

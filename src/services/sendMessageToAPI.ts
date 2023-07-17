@@ -1,9 +1,10 @@
 import { getCurrentTime, getCurrentDate } from '../helpers/helper'
 import { getChatHistory } from './history/getChatHistory'
+import { insertMessageToHistory } from './history/insertNewMessageToHistory'
 import { playAudio } from './playAudio'
 import { translateText } from './translateText'
 
-const API_KEY = import.meta.env.VITE_API_KEY || ''
+const API_KEY = import.meta.env.VITE_OPENAI_API_KEY || ''
 
 interface MessageProps {
   message: string
@@ -11,7 +12,21 @@ interface MessageProps {
   id?: number
 }
 
-export async function processMessageToChatGPT(username: String) {
+function buildMessageOwner(chatHistory: MessageProps[]) {
+  return chatHistory.map((messageObject: MessageProps) => {
+    let role = ''
+    if (messageObject.sender === 'Amadeus') {
+      role = 'assistant'
+    } else {
+      role = 'user'
+    }
+    return { role: role, content: messageObject.message }
+  })
+}
+
+export async function processMessageToChatGPT() {
+  const username = localStorage.getItem('username') || 'Okabe Rintarou'
+
   const chatHistory = getChatHistory()
 
   const currentDate = getCurrentDate()
@@ -34,15 +49,7 @@ export async function processMessageToChatGPT(username: String) {
     `,
   }
 
-  let apiMessages = chatHistory.map((messageObject: MessageProps) => {
-    let role = ''
-    if (messageObject.sender === 'Amadeus') {
-      role = 'assistant'
-    } else {
-      role = 'user'
-    }
-    return { role: role, content: messageObject.message }
-  })
+  const apiMessages = buildMessageOwner(chatHistory)
 
   apiMessages.splice(1, 0, {
     role: 'user',
@@ -66,17 +73,22 @@ export async function processMessageToChatGPT(username: String) {
       return data.json()
     })
     .then(async (data) => {
+      const amadeusResponse = data.choices[0].message.content
       const newAmadeusMessage = {
-        message: data.choices[0].message.content,
+        message: amadeusResponse,
         sender: 'Amadeus',
       }
-      const inputData = { inputs: data.choices[0].message.content }
 
-      const translation = await translateText(inputData.inputs)
+      insertMessageToHistory(newAmadeusMessage)
+
+      const translation = await translateText(amadeusResponse)
 
       if (translation) {
         playAudio(translation)
         return
       }
+    })
+    .catch((error) => {
+      console.log(error)
     })
 }
