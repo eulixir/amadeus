@@ -1,13 +1,13 @@
-import { getCurrentDate } from '../helpers/getCurrentDate'
-import { getCurrentTime } from '../helpers/getCurrentTime'
+import { getCurrentTime, getCurrentDate } from '../helpers/helper'
 import { playAudio } from './playAudio'
 import { translateText } from './translateText'
 
-const API_KEY = process.env.API_KEY
+const API_KEY = import.meta.env.API_KEY || ''
 
 interface MessageProps {
   message: string
   sender: string
+  id?: number
 }
 
 export async function processMessageToChatGPT(
@@ -53,6 +53,7 @@ export async function processMessageToChatGPT(
     model: 'gpt-3.5-turbo',
     messages: [systemMessage, ...apiMessages],
   }
+
   await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {

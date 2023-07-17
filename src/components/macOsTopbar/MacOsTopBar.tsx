@@ -11,8 +11,7 @@ import {
 } from 'react-icons/io'
 
 import { AiFillApple } from 'react-icons/ai'
-import { getCurrentDate } from '../../helpers/getCurrentDate'
-import { getCurrentTime } from '../../helpers/getCurrentTime'
+import { getCurrentDate, getCurrentTime } from '../../helpers/helper'
 
 export const MacOsTopBar = () => {
   const [date, setDate] = useState(getCurrentDate())

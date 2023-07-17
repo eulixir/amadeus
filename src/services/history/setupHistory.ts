@@ -5,6 +5,7 @@ export function setupHistory() {
       'chatHistory',
       JSON.stringify([
         {
+          id: 1,
           sender: 'Amadeus',
           message: 'Hello!',
         },

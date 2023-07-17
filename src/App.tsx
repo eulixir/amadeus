@@ -9,6 +9,8 @@ import { MacOsTopBar } from './components/macOsTopbar/MacOsTopBar'
 import { NavBar } from './components/navbar/NavBar'
 import { useTypingEffect } from './hooks/typingEffect'
 
+import { translateText } from './services/translateText'
+
 // const username = ' USER '
 
 export const App: FC<{}> = () => {
@@ -93,22 +95,12 @@ export const App: FC<{}> = () => {
   //             }
   //           </div>
   //         </div>
-  //         <div className="messageInputChatting">
-  //           <input
-  //             type="text"
-  //             placeholder=""
-  //             onKeyDown={(e) => {
-  //               if (e.key === 'Enter') {
-  //                 handleSend(e.target.value)
-  //                 e.target.value = ''
-  //               }
-  //             }}
-  //           />
-  //         </div>
   //       </div>
   //     </>
   //   )
   // }
+
+  translateText('Hello, how are you?')
 
   return (
     <div className={styles.appContainer}>
