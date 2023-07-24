@@ -83,7 +83,7 @@ export async function processMessageToChatGPT() {
       const translation = await translateText(amadeusResponse)
 
       if (translation) {
-        playAudio(translation)
+        await playAudio(translation)
         return
       }
 

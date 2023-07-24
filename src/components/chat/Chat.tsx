@@ -17,6 +17,13 @@ export function Chat() {
     setMessages(getChatHistory)
   }, [])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMessages(getChatHistory)
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div className={styles.messagesContainer}>
       {messages.map((chat: ChatProps) => {

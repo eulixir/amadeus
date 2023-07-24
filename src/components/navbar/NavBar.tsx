@@ -2,7 +2,7 @@ import styles from './NavBar.module.css'
 
 import { IoIosArrowForward, IoIosChatboxes, IoIosTrash } from 'react-icons/io'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Chat } from '../chat/Chat'
 
 import { clearHistory } from '../../services/history/clearHistory'
@@ -15,6 +15,14 @@ export const NavBar = () => {
 
     return
   }
+
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({
+      top: scrollRef.current.scrollHeight,
+    })
+  }, [])
 
   function HandleClearHistory() {
     clearHistory()
@@ -37,7 +45,7 @@ export const NavBar = () => {
               onClick={() => setSideBarOpen(false)}
             />
           </div>
-          <div className={styles.chatHistoryContainer}>
+          <div className={styles.chatHistoryContainer} ref={scrollRef}>
             <Chat />
           </div>
         </div>
