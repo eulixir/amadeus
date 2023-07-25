@@ -1,4 +1,4 @@
-import { useState, FC, KeyboardEvent, useEffect } from 'react'
+import { useState, KeyboardEvent, useEffect } from 'react'
 import styles from './styles/App.module.css'
 import kurisu from './assets/bg_character_.png'
 import { motion } from 'framer-motion'
@@ -6,7 +6,6 @@ import { motion } from 'framer-motion'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BsFillSendFill } from 'react-icons/bs'
 import { IoIosSearch } from 'react-icons/io'
-import { PiTextTBold } from 'react-icons/pi'
 
 import { TopBar } from './components/topBar/TopBar'
 
@@ -18,6 +17,7 @@ import { getLastKurisuMessage } from './services/history/getLastKurisuMessage'
 import { insertMessageToHistory } from './services/history/insertNewMessageToHistory'
 import { processMessageToChatGPT } from './services/sendMessageToAPI'
 import Modal from 'react-modal'
+import { FiMessageCircle } from 'react-icons/fi'
 
 export const App = () => {
   const [currentKirisuMessage, setCurrentKirisuMessage] = useState('')
@@ -60,6 +60,12 @@ export const App = () => {
       return
     }
 
+    if (e.key === 'Escape') {
+      setIsOpen(false)
+
+      return
+    }
+
     return
   }
 
@@ -95,7 +101,7 @@ export const App = () => {
               <div className={styles.nameLine} />
             </div>
             <div>
-              <PiTextTBold
+              <FiMessageCircle
                 onClick={() => setIsOpen(true)}
                 className={styles.openModalButton}
                 size={32}
