@@ -12,28 +12,28 @@
   "dependencies": {
     "@chatscope/chat-ui-kit-react": "^1.10.1",
     "@chatscope/chat-ui-kit-styles": "^1.4.0",
-    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "framer-motion": "^10.12.21",
-    "jquery": "^3.6.4",
+    "framer-motion": "^10.15.1",
+    "jquery": "^3.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
     "@types/react-icons": "^3.0.0",
     "@types/react-modal": "^3.16.0",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "@typescript-eslint/parser": "^5.61.0",
-    "@vitejs/plugin-react": "^4.0.1",
-    "eslint": "^8.44.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@vitejs/plugin-react": "^4.0.4",
+    "eslint": "^8.46.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.1",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.0"
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9"
   }
 }
