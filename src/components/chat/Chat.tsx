@@ -1,5 +1,4 @@
 import styles from './Chat.module.css'
-import { AiOutlineUser } from 'react-icons/ai'
 import { getChatHistory } from '../../services/history/getChatHistory'
 import { useEffect, useState } from 'react'
 
@@ -38,9 +37,7 @@ export function Chat() {
             ) : (
               <div className={styles.userChatContainer} key={chat.id}>
                 <span>{chat.timestamp}</span>
-                <div className={styles.userImg}>
-                  <AiOutlineUser size="32px" />
-                </div>
+                <div className={styles.userImg} />
                 <div className={styles.message}>{chat.message}</div>
               </div>
             )}
