@@ -10,7 +10,7 @@ import { IoIosSearch } from 'react-icons/io'
 import { TopBar } from './components/topBar/TopBar'
 
 import { MacOsTopBar } from './components/macOsTopbar/MacOsTopBar'
-import { NavBar } from './components/navbar/NavBar'
+import { SideBar } from './components/sidebar/SideBar'
 
 import { getLastKurisuMessage } from './services/history/getLastKurisuMessage'
 
@@ -88,7 +88,7 @@ export const App = () => {
         className={styles.appInterfaceContainer}
       >
         <TopBar />
-        <NavBar messages={messages} />
+        <SideBar messages={messages} />
         <div className={styles.kurisuContainer}>
           <img
             draggable={false}

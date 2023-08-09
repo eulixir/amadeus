@@ -1,4 +1,4 @@
-import styles from './NavBar.module.css'
+import styles from './SideBar.module.css'
 
 import { IoIosArrowForward, IoIosChatboxes, IoIosTrash } from 'react-icons/io'
 
@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Chat } from '../chat/Chat'
 
 import { clearHistory } from '../../services/history/clearHistory'
-interface NavBarProps {
+interface SideBarProps {
   messages: MessageProps[]
 }
 interface MessageProps {
@@ -16,7 +16,7 @@ interface MessageProps {
   timestamp: string
 }
 
-export function NavBar({ messages }: NavBarProps) {
+export function SideBar({ messages }: SideBarProps) {
   const [sideBarOpen, setSideBarOpen] = useState(false)
 
   function showSidebar() {
@@ -42,11 +42,11 @@ export function NavBar({ messages }: NavBarProps) {
 
   return (
     <>
-      <div className={styles.navbar}>
+      <div className={styles.sidebar}>
         <IoIosChatboxes onClick={showSidebar} size="2rem" />
       </div>
-      <nav className={sideBarOpen ? styles.navMenuActive : styles.navMenu}>
-        <div className={styles.navbarToggle}>
+      <nav className={sideBarOpen ? styles.sideMenuActive : styles.sideMenu}>
+        <div className={styles.sidebarToggle}>
           <div>
             <IoIosTrash size="2rem" onClick={HandleClearHistory} />
             <IoIosArrowForward
