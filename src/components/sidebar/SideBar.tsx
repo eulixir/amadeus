@@ -43,7 +43,9 @@ export function SideBar({ messages }: SideBarProps) {
   return (
     <>
       <div className={styles.sidebar}>
-        <IoIosChatboxes onClick={showSidebar} size="2rem" />
+        <button onClick={showSidebar}>
+          <IoIosChatboxes size="2rem" />
+        </button>
       </div>
       <nav className={sideBarOpen ? styles.sideMenuActive : styles.sideMenu}>
         <div className={styles.sidebarToggle}>

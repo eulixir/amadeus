@@ -4,12 +4,21 @@
 
   position: absolute;
 }
+.sidebar button {
+  outline: none;
+  background: transparent;
+  border: none;
+}
 
-.sidebar > svg {
+.sidebar button:focus {
+  border: 1px solid var(--gray-light-100);
+  border-radius: 2px;
+}
+.sidebar > button > svg {
   color: var(--gray-light-100);
 }
 
-.sidebar > svg:hover {
+.sidebar > button > svg:hover {
   cursor: pointer;
 }
 

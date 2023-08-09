@@ -110,13 +110,12 @@ export const App = () => {
               Makise Kurisu
               <div className={styles.nameLine} />
             </div>
-            <div>
-              <FiMessageCircle
-                onClick={() => setIsOpen(true)}
-                className={styles.openModalButton}
-                size={32}
-              />
-            </div>
+            <button
+              onClick={() => setIsOpen(true)}
+              className={styles.openModalButton}
+            >
+              <FiMessageCircle size={32} />
+            </button>
             <Modal
               isOpen={modalIsOpen}
               overlayClassName={styles.modalOverlay}
@@ -144,11 +143,13 @@ export const App = () => {
                     <BsFillSendFill />
                   </div>
                 </div>
-                <AiOutlineClose
-                  className={styles.closeModalButton}
-                  size="32"
-                  onClick={() => setIsOpen(false)}
-                />
+                <button>
+                  <AiOutlineClose
+                    className={styles.closeModalButton}
+                    size="32"
+                    onClick={() => setIsOpen(false)}
+                  />
+                </button>
               </div>
             </Modal>
           </div>

@@ -159,8 +159,15 @@
 .openModalButton {
   right: 2.6rem;
   bottom: 2.2rem;
-
+  background: transparent;
+  outline: none;
+  border: none;
   position: absolute;
+  color: var(--gray-light-300);
+}
+
+.openModalButton:focus {
+  border: 1px solid var(--gray-light-500);
 }
 
 .openModalButton:hover {
