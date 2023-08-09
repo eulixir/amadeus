@@ -1,31 +1,20 @@
 import styles from './Chat.module.css'
-import { getChatHistory } from '../../services/history/getChatHistory'
-import { useEffect, useState } from 'react'
 
 interface ChatProps {
+  messages: MessageProps[]
+}
+
+interface MessageProps {
   sender: string
   message: string
   id: number
   timestamp: string
 }
 
-export function Chat() {
-  const [messages, setMessages] = useState(getChatHistory)
-
-  useEffect(() => {
-    setMessages(getChatHistory)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMessages(getChatHistory)
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [])
-
+export function Chat({ messages }: ChatProps) {
   return (
     <div className={styles.messagesContainer}>
-      {messages.map((chat: ChatProps) => {
+      {messages.map((chat: MessageProps) => {
         return (
           <>
             {chat.sender === 'Amadeus' ? (

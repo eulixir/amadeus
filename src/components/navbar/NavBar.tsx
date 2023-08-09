@@ -6,8 +6,17 @@ import { useEffect, useRef, useState } from 'react'
 import { Chat } from '../chat/Chat'
 
 import { clearHistory } from '../../services/history/clearHistory'
+interface NavBarProps {
+  messages: MessageProps[]
+}
+interface MessageProps {
+  sender: string
+  message: string
+  id: number
+  timestamp: string
+}
 
-export const NavBar = () => {
+export function NavBar({ messages }: NavBarProps) {
   const [sideBarOpen, setSideBarOpen] = useState(false)
 
   function showSidebar() {
@@ -39,14 +48,14 @@ export const NavBar = () => {
       <nav className={sideBarOpen ? styles.navMenuActive : styles.navMenu}>
         <div className={styles.navbarToggle}>
           <div>
-            <IoIosTrash size="2rem" onClick={() => HandleClearHistory()} />
+            <IoIosTrash size="2rem" onClick={HandleClearHistory} />
             <IoIosArrowForward
               size="2rem"
               onClick={() => setSideBarOpen(false)}
             />
           </div>
           <div className={styles.chatHistoryContainer} ref={scrollRef}>
-            <Chat />
+            <Chat messages={messages} />
           </div>
         </div>
       </nav>

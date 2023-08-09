@@ -18,12 +18,18 @@ import { insertMessageToHistory } from './services/history/insertNewMessageToHis
 import { processMessageToChatGPT } from './services/sendMessageToAPI'
 import Modal from 'react-modal'
 import { FiMessageCircle } from 'react-icons/fi'
+import { getChatHistory } from './services/history/getChatHistory'
 
 export const App = () => {
   const [currentKirisuMessage, setCurrentKirisuMessage] = useState('')
   const [typingMessage, setTypingMessage] = useState('')
   const [isThinking, setIsThinking] = useState(false)
   const [modalIsOpen, setIsOpen] = useState(false)
+  const [messages, setMessages] = useState(getChatHistory())
+
+  useEffect(() => {
+    setMessages(getChatHistory)
+  }, [])
 
   useEffect(() => {
     setCurrentKirisuMessage(getLastKurisuMessage())
@@ -34,6 +40,8 @@ export const App = () => {
       sender: 'User',
       message: typingMessage,
     })
+
+    setMessages(getChatHistory())
 
     setTypingMessage('')
   }
@@ -55,6 +63,8 @@ export const App = () => {
       await processMessageToChatGPT()
 
       setIsThinking(false)
+
+      setMessages(getChatHistory())
 
       setCurrentKirisuMessage(getLastKurisuMessage())
       return
@@ -78,7 +88,7 @@ export const App = () => {
         className={styles.appInterfaceContainer}
       >
         <TopBar />
-        <NavBar />
+        <NavBar messages={messages} />
         <div className={styles.kurisuContainer}>
           <img
             draggable={false}
