@@ -1,20 +1,19 @@
 import { getChatHistory } from './getChatHistory'
+import { setupHistory } from './setupHistory'
 
-interface MessageProps {
-  message: string
-  sender: string
-  id?: number
-  timestamp?: string
-}
-
-export function getLastKurisuMessage() {
+export function getLastKurisuMessage(): string {
   const chatHistory = getChatHistory()
 
-  const lastMessage = chatHistory.reverse().find((message: MessageProps) => {
+  const lastMessage = chatHistory.reverse().find((message) => {
     if (message.sender === 'Amadeus') {
       return message
     }
   })
+
+  if (!lastMessage) {
+    const initMessage = setupHistory()
+    return initMessage.message
+  }
 
   return lastMessage.message
 }

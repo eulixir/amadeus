@@ -4,7 +4,7 @@ import { insertMessageToHistory } from './history/insertNewMessageToHistory'
 import { playAudio } from './playAudio'
 import { translateText } from './translateText'
 
-const API_KEY = import.meta.env.VITE_OPENAI_API_KEY || ''
+const API_KEY = import.meta.env.VITE_OPENAI_API_KEY
 
 interface MessageProps {
   message: string

@@ -21,5 +21,5 @@ export async function playAudio(text: string) {
   const audioUrl = URL.createObjectURL(blob)
   const audio = new Audio(audioUrl)
 
-  audio.play()
+  await audio.play()
 }
