@@ -1,4 +1,4 @@
-export function cleanText(text: String) {
+export function cleanText(text: string) {
   return text.replace(/'''[\w\s]+'''/g, '')
 }
 

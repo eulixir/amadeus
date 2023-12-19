@@ -3,7 +3,7 @@ import { cleanText } from '../helpers/helper'
 const sourceLang = 'en'
 const targetLang = 'ja'
 
-const baseUrl = import.meta.env.VITE_BASE_GOOGLE_URL
+const baseUrl = "https://translate.googleapis.com/translate_a/single"
 
 async function fetchData(url: string): Promise<any> {
   try {
@@ -16,10 +16,10 @@ async function fetchData(url: string): Promise<any> {
 }
 
 function extractTranslations(data: any): string {
-  return data[0].map((x: Array<String>) => x[0]).join('')
+  return data[0].map((x: Array<string>) => x[0]).join('')
 }
 
-export async function translateText(text: String) {
+export async function translateText(text: string) {
   const cleanedText = cleanText(text)
 
   const url = `${baseUrl}?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURI(

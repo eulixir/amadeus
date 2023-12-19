@@ -1,8 +1,8 @@
 import { cleanText } from '../helpers/helper'
 import { translateText } from './translateText'
 
-const modelUrl = import.meta.env.VITE_MODEL_URL || ''
-const token = import.meta.env.VITE_TOKEN || ''
+const modelUrl = 'https://api.openai.com/v1/chat/completions'
+const token = import.meta.env.VITE_TOKEN
 
 export async function playAudio(text: string) {
   const cleanedText = cleanText(text)
